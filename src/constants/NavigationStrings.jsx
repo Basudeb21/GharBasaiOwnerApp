@@ -6,6 +6,7 @@ export default {
     // Sub Stacks
     ROOM_DETAILS_STACK: "RoomDetailsStack",
     BOOKING_ROOM_STACK: "BookingRoomStack",
+    HOME_STAY_MANAGEMENT_STACK: "HomeStayManagement",
 
     // Main Stack
     HOME: "Home",
@@ -21,10 +22,20 @@ export default {
     ROOM_DETAILS_EDIT: "EditRoomDetails",
     EXPENCES: "Expences",
     ADD_EXPENCES: "AddNewExpence",
+    HOME_STAY_MANAGEMENT: "HomeStayManagement",
 
     // 
     BOOKING_DETAILS: "BookingRoomDetails",
 
     // 
-    CHAT_AREA: "ChatArea"
+    CHAT_AREA: "ChatArea",
+
+    // Homestay Management
+    HOMESTAY_PROFILE_MANAGEMENT: "HomeStayProfileManagement",
+    CATEGORY_MANAGEMENT: "CategoryManagement",
+    ADD_ONS_MANAGEMENT: "AddOnsManagement",
+    FOOD_MANAGEMENT: "FoodManagement",
+    KYC_MANAGEMENT: "KycManagement",
+
+
 }

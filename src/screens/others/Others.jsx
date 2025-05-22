@@ -48,6 +48,10 @@ const Others = () => {
                                     navigation.navigate(NavigationStrings.EXPENCE_STACK, {
                                         screen: NavigationStrings.EXPENCES,
                                     });
+                                case "Homestay Management":
+                                    navigation.navigate(NavigationStrings.HOME_STAY_MANAGEMENT_STACK, {
+                                        screen: NavigationStrings.HOME_STAY_MANAGEMENT
+                                    })
                             }
 
                         }}

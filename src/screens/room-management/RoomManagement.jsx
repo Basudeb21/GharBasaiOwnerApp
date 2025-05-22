@@ -47,9 +47,12 @@ const RoomManagement = () => {
 
             <View>
                 {filteredRooms.map((room, index) => (
-                    <RoomPrimaryDetailsCard key={index} data={room} screenType="RoomManagement" />
+                    <View key={index} style={{ zIndex: filteredRooms.length - index }}>
+                        <RoomPrimaryDetailsCard data={room} screenType="RoomManagement" />
+                    </View>
                 ))}
             </View>
+
         </ScrollView>
     );
 };

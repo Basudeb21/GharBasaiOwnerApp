@@ -8,6 +8,7 @@ import { ChatScreen } from '../screens/chat';
 import RoomDetailsStack from './RoomDetailsStack';
 import { Booking, Dashboard, Others, RoomManagement } from '../screens';
 import ExpenseStack from './ExpancesStack';
+import HomeStayManagementStack from './HomeStayManagementStack';
 const MainStack = () => {
     const Stack = createNativeStackNavigator();
 
@@ -21,6 +22,7 @@ const MainStack = () => {
             <Stack.Screen name={NavigationStrings.ROOM} component={RoomManagement} />
             <Stack.Screen name={NavigationStrings.CHAT_STACK} component={ChatStack} />
             <Stack.Screen name={NavigationStrings.ROOM_DETAILS_STACK} component={RoomDetailsStack} />
+            <Stack.Screen name={NavigationStrings.HOME_STAY_MANAGEMENT_STACK} component={HomeStayManagementStack} />
             <Stack.Screen name={NavigationStrings.EXPENCE_STACK} component={ExpenseStack} />
 
 

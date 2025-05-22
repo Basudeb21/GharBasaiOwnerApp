@@ -41,7 +41,7 @@ const MultiInputBox = ({ label }) => {
             <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <InputWithLabel
                     label={"Name"}
-                    placeholder={"Enter amenity name"}
+                    placeholder={`Enter ${label.toLowerCase()} name`}
                     value={amenityName}
                     onChangeText={setAmenityName}
                 />
@@ -79,10 +79,11 @@ const styles = StyleSheet.create({
     amenityList: {
         flexDirection: 'row',
         flexWrap: 'wrap',
+
     },
     btn: {
         marginTop: verticalScale(30),
-        marginStart: moderateScale(18),
+        marginStart: moderateScale(40),
         backgroundColor: Colors.THEME_TRANSPARENT,
         borderRadius: scale(100),
         justifyContent: 'center',
