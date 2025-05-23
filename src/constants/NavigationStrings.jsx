@@ -15,6 +15,8 @@ export default {
     DASHBOARD: "Dashboard",
     ROOM: "Rooms",
     CHAT: "Chat",
+    OWNER_PROFILE_EDIT: "EditOwnerProfile",
+    USER_MANAGEMENT: "UserManagement",
 
     // 
     ROOM_DETAILS: "RoomDetailsScreen",
@@ -23,6 +25,7 @@ export default {
     EXPENCES: "Expences",
     ADD_EXPENCES: "AddNewExpence",
     HOME_STAY_MANAGEMENT: "HomeStayManagement",
+    CHAT_SCREEN: "ChatScreen",
 
     // 
     BOOKING_DETAILS: "BookingRoomDetails",

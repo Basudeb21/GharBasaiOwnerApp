@@ -8,6 +8,7 @@ const ChatStack = () => {
 
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name={NavigationStrings.CHAT_SCREEN} component={ChatScreen} />
             <Stack.Screen name={NavigationStrings.CHAT_AREA} component={ChatArea} />
         </Stack.Navigator>
     )

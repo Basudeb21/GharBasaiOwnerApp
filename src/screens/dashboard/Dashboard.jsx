@@ -11,18 +11,7 @@ import SinglePieChart from '../../components/SinglePieChart'
 import WeeklyReport from '../room-management/WeeklyReport'
 
 const Dashboard = () => {
-    const avatars = [
-        { uri: Images.AVATAR_ONE, name: "Alice" },
-        { uri: Images.AVATAR_TWO, name: "Bob" },
-        { uri: Images.AVATAR_THREE, name: "Charlie" },
-        { uri: Images.AVATAR_FOUR, name: "Diana" },
-        { uri: Images.AVATAR_FIVE, name: "Ethan" },
-        { uri: Images.AVATAR_SIX, name: "Fiona" },
-        { uri: Images.AVATAR_SEVEN, name: "Nil" },
-        { uri: Images.AVATAR_EIGHT, name: "Jhon" },
-        { uri: Images.AVATAR_NINE, name: "Aira" },
-        { uri: Images.AVATAR_TEN, name: "Sofiya" }
-    ];
+
     return (
         <View>
             <View style={styles.detailsCard}>
@@ -54,7 +43,6 @@ const Dashboard = () => {
             <SinglePieChart />
             <WeeklyReport />
             <Spacer height={20} />
-            <CurrentTravelers avatars={avatars} />
 
         </View>
     )

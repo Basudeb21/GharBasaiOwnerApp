@@ -14,7 +14,9 @@ export default {
 
 
     RATE: require("../imgs/rate.png"),
-    LOGO: require("../imgs/logo.png")
+    LOGO: require("../imgs/logo.png"),
+    LOGO_TWO: require("../imgs/logo_two.png")
+
 
 
 }

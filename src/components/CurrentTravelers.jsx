@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.WHITE,
         borderRadius: scale(18),
         paddingVertical: verticalScale(10),
-        paddingHorizontal: moderateScale(5),
         elevation: scale(12),
     },
     headTxt: {
@@ -47,6 +46,9 @@ const styles = StyleSheet.create({
         paddingHorizontal: moderateScale(10),
 
     },
+    avatarContainer: {
+        marginEnd: moderateScale(8)
+    },
     avatar: {
         width: moderateScale(38),
         height: verticalScale(38),
@@ -54,7 +56,7 @@ const styles = StyleSheet.create({
         elevation: scale(10),
         borderWidth: scale(2),
         borderColor: Colors.BLACK,
-        marginEnd: moderateScale(10)
+        marginEnd: moderateScale(5)
     },
     name: {
         marginTop: verticalScale(5),
