@@ -3,6 +3,7 @@ export default {
     MAIN_STACK: "MainStack",
     CHAT_STACK: "ChatStack",
     EXPENCE_STACK: "ExpenceStack",
+    AUTH_STACK: "AuthStack",
     // Sub Stacks
     ROOM_DETAILS_STACK: "RoomDetailsStack",
     BOOKING_ROOM_STACK: "BookingRoomStack",
@@ -17,6 +18,11 @@ export default {
     CHAT: "Chat",
     OWNER_PROFILE_EDIT: "EditOwnerProfile",
     USER_MANAGEMENT: "UserManagement",
+
+    // Auth Stack
+    REGISTER: "RegisterScreen",
+    LOGIN: "LoginRegister",
+
 
     // 
     ROOM_DETAILS: "RoomDetailsScreen",

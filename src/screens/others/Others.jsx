@@ -1,5 +1,5 @@
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 import Colors from '../../constants/Colors';
@@ -9,12 +9,22 @@ import ProfileBasicInfoCard from '../../components/ProfileBasicInfoCard';
 import OthersMenuCard from '../../components/OthersMenuCard';
 import Images from '../../constants/Images';
 import { useNavigation } from '@react-navigation/native';
+import { LogoutUser } from '../../local-store';
+import { AuthContext } from '../auth/AuthProvider';
+
 
 const Others = () => {
+    const { logout } = useContext(AuthContext);
     const navigation = useNavigation();
     const handelOnPress = () => {
         navigation.navigate(NavigationStrings.OWNER_PROFILE_EDIT)
     }
+
+    const handelLogout = () => {
+        LogoutUser();
+        logout();
+    }
+
     return (
         <ScrollView>
             <View style={styles.profileMainContainer}>
@@ -25,7 +35,7 @@ const Others = () => {
             </TouchableOpacity>
             <OthersMenuCard />
             <RateApp />
-            <TouchableOpacity style={{ flex: 1, flexDirection: "row", alignItems: "center", justifyContent: "center" }}>
+            <TouchableOpacity onPress={handelLogout} style={{ flex: 1, flexDirection: "row", alignItems: "center", justifyContent: "center" }}>
                 <Text style={{ fontWeight: "bold" }}>Logout</Text>
             </TouchableOpacity>
         </ScrollView>

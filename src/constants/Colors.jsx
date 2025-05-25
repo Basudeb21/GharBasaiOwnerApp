@@ -26,6 +26,7 @@ export default {
     OTHER_ICON: "#2b2b2b",
     DELETE: "#F2686F",
     EDIT: "#766FD2",
+    LOGIN_IMG_CONTAINER: "#DEDEDE",
 
     PAID_ROOM: "#009688",
     UNPAID_ROOM: "#F44336",
