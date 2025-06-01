@@ -3,22 +3,27 @@ import React from 'react'
 import InputWithLabel from './InputWithLabel'
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters'
 import Colors from '../constants/Colors'
+import { useSelector } from 'react-redux';
 
-const OwnerDetailsInput = () => {
+const OwnerDetailsInput = ({ username, email, contact_number, first_name, last_name }) => {
+    const { user } = useSelector((state) => state.auth);
+    console.log("USER OBJ : ", user);
+
+
     return (
         <View style={styles.container}>
             <View style={{ flexDirection: "row" }}>
-                <InputWithLabel label={"User Name"} placeholder={"Enter user name"} />
-                <InputWithLabel label={"Email"} placeholder={"Enter email id"} />
+                <InputWithLabel label={"User Name"} placeholder={"Enter user name"} value={username} />
+                <InputWithLabel label={"Email"} placeholder={"Enter email id"} value={email} />
 
             </View>
             <View style={{ flexDirection: "row" }}>
-                <InputWithLabel label={"Phone No."} placeholder={"Enter phone number"} />
-                <InputWithLabel label={"First Name"} placeholder={"Enter first name"} />
+                <InputWithLabel label={"Phone No."} placeholder={"Enter phone number"} value={contact_number} />
+                <InputWithLabel label={"First Name"} placeholder={"Enter first name"} value={first_name} />
             </View>
             <View style={{ flexDirection: "row" }}>
-                <InputWithLabel label={"Middle Name"} placeholder={"Enter middle name"} />
-                <InputWithLabel label={"Last Name"} placeholder={"Enter last name"} />
+                <InputWithLabel label={"Middle Name"} placeholder={"Enter middle name"} value={last_name} />
+                <InputWithLabel label={"Last Name"} placeholder={"Enter last name"} value={last_name} />
             </View>
 
             <TouchableOpacity style={styles.btn}>

@@ -4,13 +4,37 @@ import FontAwesome from 'react-native-vector-icons/dist/FontAwesome'
 import Strings from '../constants/Strings'
 import Colors from '../constants/Colors'
 import { scale, verticalScale } from 'react-native-size-matters'
-
-
-
-
-
+import { useSelector } from 'react-redux';
 
 const ProfileBasicInfoCard = () => {
+    const profileFields = ['username', 'email', 'first_name', 'last_name', 'contact_number', 'image'];
+    const { user } = useSelector((state) => state.auth);
+    let progress = 0;
+    profileFields.forEach(field => {
+        if (user?.[field]) {
+            progress += 25;
+        }
+    });
+    console.log("User from Redux:", user);
+
+    let formattedDate = 'N/A';
+    if (user?.created_at) {
+        const date = new Date(user.created_at);
+        console.log("Parsed date:", date);
+        if (!isNaN(date)) {
+            formattedDate = date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+            });
+        } else {
+            console.warn("Invalid date value in created_at:", user.created_at);
+        }
+    } else {
+        console.warn("No created_at field found.");
+    }
+
+
     return (
         <View style={styles.customerCard}>
             <View style={styles.cardMain}>
@@ -22,16 +46,16 @@ const ProfileBasicInfoCard = () => {
                     />
                 </View>
                 <View style={styles.profileData}>
-                    <Text style={styles.userName}>{Strings.DEFAULT_USER_NAME}</Text>
-                    <Text style={styles.userPhone}>{Strings.DEFAULT_MOBILE_NUMBER}</Text>
-                    <Text style={styles.memberSince}>{Strings.DEFAULT_REG_DATE}</Text>
+                    <Text style={styles.userName}>{user?.username}</Text>
+                    <Text style={styles.userPhone}>{user?.email || "No Email"}</Text>
+                    <Text style={styles.memberSince}>Member since: {formattedDate}</Text>
                 </View>
             </View>
 
-            <Text style={styles.profileCompletionText}>{Strings.DEFAULT_PROGRESS}</Text>
+            <Text style={styles.profileCompletionText}>{progress + Strings.DEFAULT_PROGRESS}</Text>
 
             <View style={styles.progressBarContainer}>
-                <View style={styles.progressBarFill} />
+                <View style={[styles.progressBarFill, { width: `${progress}%` }]} />
             </View>
 
             <Text style={styles.progressNote}>
@@ -42,7 +66,6 @@ const ProfileBasicInfoCard = () => {
 }
 
 export default ProfileBasicInfoCard
-
 
 const styles = StyleSheet.create({
     profileMainContainer: {
@@ -150,6 +173,4 @@ const styles = StyleSheet.create({
         fontSize: 12,
         color: Colors.DISABLED_TXT,
     },
-
-
-})
+});

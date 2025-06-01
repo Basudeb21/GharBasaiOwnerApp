@@ -11,15 +11,18 @@ import Colors from '../constants/Colors';
 import OthersCard from './OthersCard';
 
 const OthersMenuCard = () => {
+
+
     const navigation = useNavigation();
 
     const options = [
-        { icon: <FontAwesome5 name="user-cog" size={24} color={Colors.OTHER_ICON} />, label: "User Management" },
+        { icon: <FontAwesome5 name="user-edit" size={24} color={Colors.OTHER_ICON} />, label: "Owner Profile Edit" },
         { icon: <Fontisto name="holiday-village" size={24} color={Colors.OTHER_ICON} />, label: "Homestay Management" },
+
+        { icon: <FontAwesome5 name="user-cog" size={24} color={Colors.OTHER_ICON} />, label: "User Management" },
         // { icon: <MaterialCommunityIcons name="bag-personal" size={24} color={Colors.OTHER_ICON} />, label: "Tour Management" },
         { icon: <MaterialIcons name="miscellaneous-services" size={24} color={Colors.OTHER_ICON} />, label: "Service Management" },
         // { icon: <FontAwesome5 name="blog" size={24} color={Colors.OTHER_ICON} />, label: "Blog Management" },
-        { icon: <Fontisto name="photograph" size={24} color={Colors.OTHER_ICON} />, label: "Galary Management" },
         { icon: <MaterialIcons name="attach-money" size={24} color={Colors.OTHER_ICON} />, label: "Expense Management" },
         // { icon: <Fontisto name="room" size={24} color={Colors.OTHER_ICON} />, label: "Room Management" },
         { icon: <AntDesign name="wechat" size={24} color={Colors.OTHER_ICON} />, label: "Chat" },
@@ -36,6 +39,9 @@ const OthersMenuCard = () => {
                     label={item.label}
                     onPress={() => {
                         switch (item.label) {
+                            case "Owner Profile Edit":
+                                navigation.navigate(NavigationStrings.OWNER_PROFILE_EDIT);
+                                break;
                             case "Chat":
                                 navigation.navigate(NavigationStrings.CHAT_STACK, {
                                     screen: NavigationStrings.CHAT_SCREEN,

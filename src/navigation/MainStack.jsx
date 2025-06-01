@@ -28,10 +28,6 @@ const MainStack = () => {
             <Stack.Screen name={NavigationStrings.EXPENCE_STACK} component={ExpenseStack} />
             <Stack.Screen name={NavigationStrings.OWNER_PROFILE_EDIT} component={OwnerProfileEdit} />
             <Stack.Screen name={NavigationStrings.USER_MANAGEMENT} component={UserManagement} />
-
-
-
-
         </Stack.Navigator>
     )
 }

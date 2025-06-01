@@ -5,11 +5,11 @@ import { moderateScale, scale, verticalScale } from 'react-native-size-matters'
 import Colors from '../constants/Colors'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
-const ProfileImage = () => {
+const ProfileImage = ({ img }) => {
     return (
         <View style={styles.container}>
             <View style={styles.imageWrapper}>
-                <Image source={{ uri: Images.AVATAR_ONE }} style={styles.profilePic} />
+                <Image source={{ uri: img || Images.AVATAR_ONE }} style={styles.profilePic} />
                 <TouchableOpacity style={styles.btn}>
                     <FontAwesome5
                         name="camera-retro"

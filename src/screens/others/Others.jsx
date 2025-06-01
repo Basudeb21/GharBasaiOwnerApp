@@ -1,6 +1,6 @@
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useContext } from 'react'
-
+import React from 'react'
+import { useDispatch } from 'react-redux';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 import Colors from '../../constants/Colors';
 import RateApp from '../../components/RateApp';
@@ -10,29 +10,26 @@ import OthersMenuCard from '../../components/OthersMenuCard';
 import Images from '../../constants/Images';
 import { useNavigation } from '@react-navigation/native';
 import { LogoutUser } from '../../local-store';
-import { AuthContext } from '../auth/AuthProvider';
-
+import { logout } from '../../redux-storage/AuthSlice';
+import Spacer from '../../components/Spacer';
 
 const Others = () => {
-    const { logout } = useContext(AuthContext);
-    const navigation = useNavigation();
-    const handelOnPress = () => {
-        navigation.navigate(NavigationStrings.OWNER_PROFILE_EDIT)
-    }
+    const dispatch = useDispatch();
+
 
     const handelLogout = () => {
         LogoutUser();
-        logout();
-    }
+        dispatch(logout());
+    };
 
     return (
         <ScrollView>
             <View style={styles.profileMainContainer}>
                 <Image source={Images.LOGO_TWO} style={styles.logo} />
             </View>
-            <TouchableOpacity style={{ marginTop: verticalScale(60) }} onPress={handelOnPress}>
-                <ProfileBasicInfoCard />
-            </TouchableOpacity>
+            <Spacer height={85} />
+            <ProfileBasicInfoCard />
+
             <OthersMenuCard />
             <RateApp />
             <TouchableOpacity onPress={handelLogout} style={{ flex: 1, flexDirection: "row", alignItems: "center", justifyContent: "center" }}>

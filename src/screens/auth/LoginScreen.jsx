@@ -1,21 +1,67 @@
-import { KeyboardAvoidingView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
-import AdverticementHeader from '../../components/AdverticementHeader'
-import AuthInput from '../../components/AuthInput'
-import { useNavigation } from '@react-navigation/native'
-import { moderateScale, scale, verticalScale } from 'react-native-size-matters'
-import Colors from '../../constants/Colors'
-import NavigationStrings from '../../constants/NavigationStrings'
+import React, { useState } from 'react';
+import {
+    KeyboardAvoidingView,
+    ScrollView,
+    StyleSheet,
+    Text,
+    ToastAndroid,
+    TouchableOpacity,
+    View,
+    Platform,
+} from 'react-native';
+import AdverticementHeader from '../../components/AdverticementHeader';
+import AuthInput from '../../components/AuthInput';
+import { useNavigation } from '@react-navigation/native';
+import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
+import Colors from '../../constants/Colors';
+import NavigationStrings from '../../constants/NavigationStrings';
+import Login from '../../api/auth/Login';
+import { useDispatch } from 'react-redux';
+import { setCredentials } from "../../redux-storage/AuthSlice";
+import EncryptedStorage from "react-native-encrypted-storage";
+import { useSelector } from 'react-redux';
+
+
 
 const LoginScreen = () => {
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
-
     const navigation = useNavigation();
-
+    const dispatch = useDispatch();
+    const { user } = useSelector((state) => state.auth);
+    console.log('User from Redux:', user);
     const handelSignupClick = () => {
-        navigation.navigate(NavigationStrings.REGISTER)
-    }
+        navigation.navigate(NavigationStrings.REGISTER);
+    };
+
+    const handleLogin = async () => {
+        const result = await Login(userEmail, userPassword);
+
+        if (result?.status === 'success') {
+            const userData = result.data;
+            const token = result.token;
+
+
+            console.log("user_data : ", userData);
+            console.log("token : ", token);
+
+
+
+            await EncryptedStorage.setItem('auth_token', token);
+            await EncryptedStorage.setItem('user_session', JSON.stringify(userData));
+
+            dispatch(setCredentials({
+                token: token,
+                user: userData
+            }));
+
+            ToastAndroid.show("Login successful!", ToastAndroid.SHORT);
+            return;
+        }
+
+        ToastAndroid.show(result?.message || 'Login failed', ToastAndroid.SHORT);
+    };
+
 
     return (
         <KeyboardAvoidingView
@@ -39,53 +85,46 @@ const LoginScreen = () => {
                 />
 
                 <View style={styles.btnContainer}>
-                    <TouchableOpacity style={styles.btn} >
+                    <TouchableOpacity style={styles.btn} onPress={handleLogin}>
                         <Text style={styles.btnTxt}>Login</Text>
                     </TouchableOpacity>
                 </View>
 
                 <TouchableOpacity onPress={handelSignupClick}>
-                    <Text style={styles.loginTxt}>don't have an account? <Text style={styles.link}>Signup</Text></Text>
+                    <Text style={styles.loginTxt}>
+                        don't have an account? <Text style={styles.link}>Signup</Text>
+                    </Text>
                 </TouchableOpacity>
-
             </ScrollView>
-
         </KeyboardAvoidingView>
+    );
+};
 
-    )
-}
-
-export default LoginScreen
+export default LoginScreen;
 
 const styles = StyleSheet.create({
-    container: {
-        flexGrow: 1,
-        backgroundColor: '#F5F5F5',
-        paddingVertical: 20,
-        alignItems: 'center',
-    },
     btnContainer: {
         paddingHorizontal: moderateScale(20),
         marginTop: verticalScale(20),
-        marginBottom: verticalScale(20)
+        marginBottom: verticalScale(20),
     },
     btn: {
         backgroundColor: Colors.THEME,
-        width: "100%",
+        width: '100%',
         paddingVertical: verticalScale(10),
-        borderRadius: scale(20)
+        borderRadius: scale(20),
     },
     btnTxt: {
         fontSize: scale(20),
-        alignSelf: "center",
-        fontWeight: "600",
-        color: Colors.WHITE
+        alignSelf: 'center',
+        fontWeight: '600',
+        color: Colors.WHITE,
     },
     loginTxt: {
-        alignSelf: "center"
+        alignSelf: 'center',
     },
     link: {
         color: Colors.BLUE,
-        textDecorationLine: "underline"
-    }
-})
+        textDecorationLine: 'underline',
+    },
+});
