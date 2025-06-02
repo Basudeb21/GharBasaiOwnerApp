@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
         borderRadius: scale(8),
         backgroundColor: Colors.WHITE,
         width: moderateScale(160),
-        marginStart: moderateScale(10)
+        marginStart: moderateScale(10),
+        color: Colors.BLACK
     },
 });

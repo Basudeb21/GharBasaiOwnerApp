@@ -5,11 +5,11 @@ import { moderateScale, scale, verticalScale } from 'react-native-size-matters'
 import Colors from '../../../constants/Colors'
 import FontAwesome5 from 'react-native-vector-icons/dist/FontAwesome5'
 
-const FeaturedImg = () => {
+const FeaturedImg = ({ onPress }) => {
     return (
         <ImageBackground source={{ uri: Images.HOTEL_FEATURED }} style={styles.img}>
             <Text style={styles.txt}>Featured Image</Text>
-            <TouchableOpacity style={styles.editBtn}>
+            <TouchableOpacity style={styles.editBtn} onPress={onPress}>
                 <FontAwesome5
                     name="camera-retro"
                     size={24}

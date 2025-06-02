@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
         height: verticalScale(100),
         width: moderateScale(100),
         borderRadius: scale(100),
+        borderColor: Colors.WHITE
     },
     btn: {
         position: 'absolute',

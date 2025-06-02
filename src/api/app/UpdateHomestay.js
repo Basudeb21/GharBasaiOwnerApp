@@ -3,7 +3,7 @@ import Api from "../common/Api";
 
 const UpdateHomestay = async ({ homestay_name, address, phone, email }) => {
     try {
-        const response = await axios.post(`${Api.BASE_URL}/update_room/47`, {
+        const response = await axios.post(`${Api.BASE_URL}update_profile/homestay_owner_updateProfile`, {
             user_email,
             user_password
         });

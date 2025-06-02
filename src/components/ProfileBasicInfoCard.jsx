@@ -12,7 +12,7 @@ const ProfileBasicInfoCard = () => {
     let progress = 0;
     profileFields.forEach(field => {
         if (user?.[field]) {
-            progress += 25;
+            progress += 16.6666;
         }
     });
     console.log("User from Redux:", user);
@@ -52,10 +52,10 @@ const ProfileBasicInfoCard = () => {
                 </View>
             </View>
 
-            <Text style={styles.profileCompletionText}>{progress + Strings.DEFAULT_PROGRESS}</Text>
+            <Text style={styles.profileCompletionText}>{Math.round(progress) + Strings.DEFAULT_PROGRESS}</Text>
 
             <View style={styles.progressBarContainer}>
-                <View style={[styles.progressBarFill, { width: `${progress}%` }]} />
+                <View style={[styles.progressBarFill, { width: `${Math.round(progress)}%` }]} />
             </View>
 
             <Text style={styles.progressNote}>
