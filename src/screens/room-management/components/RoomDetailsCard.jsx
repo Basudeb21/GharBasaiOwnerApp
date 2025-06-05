@@ -8,13 +8,12 @@ import Ionicons from 'react-native-vector-icons/dist/Ionicons'
 import AntDesign from 'react-native-vector-icons/dist/AntDesign'
 import FontAwesome from 'react-native-vector-icons/dist/FontAwesome'
 import FontAwesome6 from 'react-native-vector-icons/dist/FontAwesome6'
-
-
+import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons'
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters'
 import Spacer from '../../../components/Spacer'
 import BR from '../../../components/BR'
 
-const RoomDetailsCard = () => {
+const RoomDetailsCard = ({ data }) => {
     return (
         <>
             <View style={styles.card}>
@@ -111,7 +110,7 @@ const RoomDetailsCard = () => {
                             size={14}
                             style={styles.backIcon}
                         />
-                        <Text style={styles.data}>2,210</Text>
+                        <Text style={styles.data}>{data.rent}</Text>
                     </View>
                     <View style={styles.detailsContainer}>
                         <FontAwesome6
@@ -120,7 +119,7 @@ const RoomDetailsCard = () => {
                             size={14}
                             style={styles.backIcon}
                         />
-                        <Text style={styles.data}>6 (max)</Text>
+                        <Text style={styles.data}>{data.maximum_guest} (max)</Text>
                     </View>
                 </View>
                 <Spacer height={10} />
@@ -132,7 +131,7 @@ const RoomDetailsCard = () => {
                             size={14}
                             style={styles.backIcon}
                         />
-                        <Text style={styles.data}>2</Text>
+                        <Text style={styles.data}>{data.bath}</Text>
                     </View>
                     <View style={styles.detailsContainer}>
                         <Ionicons
@@ -141,16 +140,16 @@ const RoomDetailsCard = () => {
                             size={14}
                             style={styles.backIcon}
                         />
-                        <Text style={styles.data}>2</Text>
+                        <Text style={styles.data}>{data.beds}</Text>
                     </View>
                     <View style={styles.detailsContainer}>
-                        <Fontisto
-                            name="date"
+                        <MaterialCommunityIcons
+                            name="home-floor-0"
                             color={Colors.FADE}
                             size={14}
                             style={styles.backIcon}
                         />
-                        <Text style={styles.data}>21.02.25 - Present</Text>
+                        <Text style={styles.data}>{data.room_floor}</Text>
                     </View>
                 </View>
             </View>

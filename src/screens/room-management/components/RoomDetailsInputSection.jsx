@@ -2,47 +2,85 @@ import { StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import InputWithLabel from '../../../components/InputWithLabel'
 import DropdownWithLabel from '../../../components/DropdownWithLabel'
-import DescriptionBox from '../../../components/DescriptionBox '
-import MultiInputBox from '../../../components/MultiInputBox'
+import DescriptionBox from '../../../components/DescriptionBox'
+import ImageAdderSection from './ImageAdderSection'
 
-const RoomDetailsInputSection = () => {
-    const [roomType, setRoomType] = useState(null);
-    const [roomSts, setRoomSts] = useState(null);
+const RoomDetailsInputSection = ({
+    data,
+    roomNo, setRoomNo,
+    roomRent, setRoomRent,
+    beds, setBeds,
+    baths, setBaths,
+    maxGuest, setMaxGuest,
+    summery, setSummery,
+    roomType, setRoomType,
+    bathType, setBathType,
+    description, setDescription,
+    roomTypeOptions
+}) => {
 
-    const roomTypes = [
-        { label: 'Deluxe', value: 'deluxe' },
-        { label: 'Primium', value: 'primium' },
-        { label: 'Normal', value: 'normal' },
-    ]
-    const roomStatus = [
-        { label: 'Show', value: 'show' },
-        { label: 'Hide', value: 'hide' },
-    ]
+    setRoomNo(data.room_no)
+    setRoomRent(data.rent)
+    setBeds(data.beds)
+    setBaths(data.bath)
+    setMaxGuest(data.maximum_guest)
+    // setRoomType()
+    // setBathType()
+    setDescription(data.description)
+
+
+    const bathTypeOptions = [
+        { label: 'Common', value: 'common' },
+        { label: 'Private', value: 'private' },
+    ];
     return (
         <View>
             <View style={{ flexDirection: "row" }}>
-                <InputWithLabel label={"Rent/Night"} placeholder={"Enter room rent"} type='number' />
-                <InputWithLabel label={"Quantity"} placeholder={"Enter No. of room"} type='number' />
+                <InputWithLabel
+                    label={"Room No."}
+                    placeholder={"Enter room No."}
+                    type='text'
+                    value={roomNo}
+                    onChangeText={setRoomNo}
+                />
+
+
+                <InputWithLabel
+                    label={"Rent/Night"}
+                    placeholder={"Enter room rent"}
+                    type='number'
+                    value={roomRent}
+                    onChangeText={setRoomRent}
+                />
             </View>
             <View style={{ flexDirection: "row" }}>
-                <InputWithLabel label={"Beds"} placeholder={"Enter No. of beds"} type='number' />
-                <InputWithLabel label={"Baths"} placeholder={"Enter No. of baths"} type='number' />
+                <InputWithLabel
+                    label={"Beds"}
+                    placeholder={"Enter No. of beds"}
+                    type='number'
+                    value={beds}
+                    onChangeText={setBeds}
+                />
+                <InputWithLabel
+                    label={"Baths"}
+                    placeholder={"Enter No. of baths"}
+                    type='number'
+                    value={baths}
+                    onChangeText={setBaths}
+                />
             </View>
             <View style={{ flexDirection: "row" }}>
-                <InputWithLabel label={"Max Guests"} placeholder={"Enter No. of max guests"} type='number' />
-                <InputWithLabel label={"Address"} placeholder={"Enter address"} />
-            </View>
-            <View style={{ flexDirection: "row" }}>
-                <InputWithLabel label={"Latitude"} placeholder={"Enter latitude for map"} type='number' />
-                <InputWithLabel label={"Longitude"} placeholder={"Enter Longitude for map"} type='number' />
-            </View>
-            <View style={{ flexDirection: "row" }}>
-                <InputWithLabel label={"Phone"} placeholder={"Enter phone number"} type='phone' />
-                <InputWithLabel label={"Email"} placeholder={"Enter email id"} type='email' />
-            </View>
-            <View style={{ flexDirection: "row" }}>
-                <InputWithLabel label={"Title"} placeholder={"Enter homestay title"} />
-                <InputWithLabel label={"Summery"} placeholder={"Enter a summery"} />
+                <InputWithLabel
+                    label={"Max Guests"}
+                    placeholder={"Enter No. of max guests"}
+                    type='number'
+                    value={maxGuest}
+                    onChangeText={setMaxGuest}
+                />
+                <InputWithLabel
+                    label={"Summery"}
+                    placeholder={"Enter a summery"}
+                />
             </View>
 
             <View style={{ flexDirection: "row" }}>
@@ -51,22 +89,26 @@ const RoomDetailsInputSection = () => {
                     placeholder="Select type"
                     value={roomType}
                     onChangeValue={setRoomType}
-                    items={roomTypes}
+                    items={roomTypeOptions}
                 />
                 <DropdownWithLabel
-                    label="Room status"
+                    label="Bath type"
                     placeholder="Select room status"
-                    value={roomSts}
-                    onChangeValue={setRoomSts}
-                    items={roomStatus}
+                    value={bathType}
+                    onChangeValue={setBathType}
+                    items={bathTypeOptions}
                 />
+
             </View>
             <DescriptionBox
                 label="Room Description"
                 placeholder="Write something about the room..."
+                value={description}
+                setValue={setDescription}
+
             />
 
-            <MultiInputBox label={"Aminities"} />
+            <ImageAdderSection />
 
         </View>
     )

@@ -7,6 +7,7 @@ import InputWithLabel from '../../../../components/InputWithLabel'
 import { verticalScale } from 'react-native-size-matters'
 import Spacer from '../../../../components/Spacer'
 import GetHomestayProfile from '../../../../api/app/GetHomestayProfile'
+import MultiInputBox from '../../../../components/MultiInputBox'
 
 const ProfileManagemengt = () => {
     const [homestayName, setHomestayName] = useState("");
@@ -77,6 +78,8 @@ const ProfileManagemengt = () => {
                         <InputWithLabel label={"Latitude"} placeholder={"Enter homestay Latitude"} value={latitude} />
                         <InputWithLabel label={"Longitude"} placeholder={"Enter homestay Longitude"} value={longitude} />
                     </View>
+                    <MultiInputBox label={"Aminities"} />
+
                     <Spacer height={20} />
 
                 </ScrollView>

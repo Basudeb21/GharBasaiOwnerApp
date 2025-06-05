@@ -12,11 +12,15 @@ const DateInput = ({ label, date, onChange }) => {
     const hideDatePicker = () => setShowPicker(false);
 
     const onDateChange = (event, selectedDate) => {
-        hideDatePicker();
-        if (selectedDate) {
+        if (event.type === 'set' && selectedDate instanceof Date) {
+            console.log("Selected Date:", selectedDate); // ✅ See actual value
             onChange(selectedDate);
+        } else {
+            console.log("Date selection cancelled or invalid");
         }
+        hideDatePicker();
     };
+
 
     return (
         <View style={styles.container}>

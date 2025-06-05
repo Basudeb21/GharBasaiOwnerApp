@@ -1,13 +1,17 @@
-// components/DropdownWithLabel.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { moderateScale, verticalScale } from 'react-native-size-matters';
-import Colors from '../constants/Colors'; // adjust path based on your structure
+import Colors from '../constants/Colors';
 
 const DropdownWithLabel = ({ label, items, placeholder, value, onChangeValue }) => {
     const [open, setOpen] = useState(false);
     const [localItems, setLocalItems] = useState(items);
+
+    // Update localItems if items prop changes
+    useEffect(() => {
+        setLocalItems(items);
+    }, [items]);
 
     return (
         <View style={styles.container}>
@@ -22,6 +26,8 @@ const DropdownWithLabel = ({ label, items, placeholder, value, onChangeValue }) 
                 placeholder={placeholder}
                 style={styles.dropdown}
                 dropDownContainerStyle={styles.dropdownBox}
+                zIndex={9999} // helpful to avoid overlapping issues
+                zIndexInverse={9999}
             />
         </View>
     );
@@ -31,24 +37,21 @@ export default DropdownWithLabel;
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: verticalScale(10),
-        zIndex: 999,
-        width: '44%',
-        marginStart: moderateScale(15)
-
+        marginVertical: verticalScale(8),
+        width: '48%',
+        marginStart: moderateScale(10),
+        zIndex: 9999,
     },
     label: {
         marginBottom: verticalScale(5),
         color: Colors.LABEL,
         fontWeight: '500',
-        marginStart: moderateScale(5)
+        marginStart: moderateScale(5),
     },
     dropdown: {
         backgroundColor: Colors.WHITE,
-
     },
     dropdownBox: {
         backgroundColor: Colors.WHITE,
-
     },
 });

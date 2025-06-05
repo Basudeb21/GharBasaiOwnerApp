@@ -8,39 +8,42 @@ import { useNavigation } from '@react-navigation/native';
 import NavigationStrings from '../constants/NavigationStrings';
 import Entypo from 'react-native-vector-icons/Entypo';
 import ButtonBox from './ButtonBox';
+import Spacer from './Spacer';
 
-const RoomPrimaryDetailsCard = ({ data }) => {
+const RoomPrimaryDetailsCard = ({ data, roomCategories }) => {
     const [showMenu, setShowMenu] = useState(false);
     const navigation = useNavigation();
 
     const toggleMenu = () => setShowMenu(prev => !prev);
 
+    const getRoomTypeName = () => {
+        if (!data.room_category) return "Room";
+        const category = roomCategories.find(cat => cat.id.toString() === data.room_category.toString());
+        return category ? `${category.name}` : "Room";
+    };
+
     const handleView = () => {
         setShowMenu(false);
         navigation.navigate(NavigationStrings.ROOM_DETAILS_STACK, {
             screen: NavigationStrings.ROOM_DETAIL_PAGE,
-            params: { data }, // Pass room data if needed in detail page
+            params: { roomData: data },
         });
     };
 
     const handleEdit = () => {
         setShowMenu(false);
-        if (data.status?.toLowerCase() === 'vacant') {
-            // Optional: Dialog or toast can be triggered here
-            console.log('Edit disabled for vacant room');
-        } else {
-            navigation.navigate(NavigationStrings.ROOM_DETAILS_STACK, {
-                screen: NavigationStrings.ROOM_DETAILS_EDIT,
-                params: { data }, // Pass room data to edit screen
-            });
-        }
+
+        navigation.navigate(NavigationStrings.ROOM_DETAILS_STACK, {
+            screen: NavigationStrings.ROOM_DETAILS_EDIT,
+            params: { roomData: data },
+        });
     };
 
     return (
         <View style={styles.container}>
             <View style={styles.headContainer}>
                 <Text style={styles.headTxt}>
-                    {data.type.charAt(0).toUpperCase() + data.type.slice(1)} Room
+                    {getRoomTypeName()}
                 </Text>
             </View>
 
@@ -48,20 +51,20 @@ const RoomPrimaryDetailsCard = ({ data }) => {
                 <View style={styles.leftContainer}>
                     <View style={styles.subContainer}>
                         <MaterialIcons name="meeting-room" size={15} color={Colors.WHITE} />
-                        <Text style={styles.detailsTxt}>{data.roomNo}</Text>
+                        <Text style={styles.detailsTxt}>{data.room_no}</Text>
                     </View>
                     <View style={styles.subContainer}>
                         <FontAwesome name="bed" size={15} color={Colors.WHITE} />
-                        <Text style={styles.detailsTxt}>{data.capacity}</Text>
+                        <Text style={styles.detailsTxt}>{data.beds}</Text>
                     </View>
                     <View style={styles.subContainer}>
                         <FontAwesome name="money" size={15} color={Colors.WHITE} />
                         <Text style={styles.detailsTxt}>{data.rent}</Text>
                     </View>
                     <View style={styles.subContainer}>
-                        <MaterialIcons name="payment" size={15} color={Colors.WHITE} />
+                        <FontAwesome name="users" size={15} color={Colors.WHITE} />
                         <Text style={styles.detailsTxt}>
-                            {data.status.charAt(0).toUpperCase() + data.status.slice(1)}
+                            {data.maximum_guest}
                         </Text>
                     </View>
                 </View>
@@ -78,6 +81,7 @@ const RoomPrimaryDetailsCard = ({ data }) => {
                     )}
                 </View>
             </View>
+            <Spacer height={10} />
         </View>
     );
 };
@@ -86,7 +90,7 @@ export default RoomPrimaryDetailsCard;
 
 const styles = StyleSheet.create({
     container: {
-        marginVertical: verticalScale(5),
+        marginTop: verticalScale(15),
         marginHorizontal: moderateScale(15),
         paddingHorizontal: scale(10),
         borderRadius: scale(12),

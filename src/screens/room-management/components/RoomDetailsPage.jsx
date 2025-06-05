@@ -1,6 +1,6 @@
 import { ScrollView, StyleSheet, Text, View, Dimensions } from 'react-native'
 import React, { useLayoutEffect } from 'react'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import AutoImageSlider from '../../../components/AutoImageSlider'
 import Header from '../../../components/Header'
 import RoomDetailsCard from './RoomDetailsCard'
@@ -12,7 +12,13 @@ import Colors from '../../../constants/Colors'
 const RoomDetailsPage = () => {
     const navigation = useNavigation();
 
+    const route = useRoute();
+    const { roomData } = route.params;
+
+    console.log("Room Data: ", roomData);
     useLayoutEffect(() => {
+
+
         navigation.getParent()?.setOptions({
             tabBarStyle: { display: 'none' }
         });
@@ -32,7 +38,7 @@ const RoomDetailsPage = () => {
             <View style={styles.contentContainer}>
                 <ScrollView contentContainerStyle={styles.scrollContent}>
                     <AutoImageSlider />
-                    <RoomDetailsCard />
+                    <RoomDetailsCard data={roomData} />
                     <FacilityCard />
                 </ScrollView>
                 <View style={styles.btm}>

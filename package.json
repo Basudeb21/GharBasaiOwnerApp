@@ -29,6 +29,7 @@
     "react-native-encrypted-storage": "^4.0.3",
     "react-native-gesture-handler": "^2.25.0",
     "react-native-image-picker": "^8.2.1",
+    "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-modal": "^14.0.0-rc.1",
     "react-native-pager-view": "^6.7.1",
     "react-native-paper": "^5.14.4",

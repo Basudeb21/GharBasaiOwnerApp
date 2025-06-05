@@ -28,6 +28,7 @@ export default {
     ROOM_DETAILS: "RoomDetailsScreen",
     ROOM_DETAIL_PAGE: "RoomDetailsPage",
     ROOM_DETAILS_EDIT: "EditRoomDetails",
+    ADD_NEW_ROOM: "AddNewRoom",
     EXPENCES: "Expences",
     ADD_EXPENCES: "AddNewExpence",
     HOME_STAY_MANAGEMENT: "HomeStayManagement",

@@ -1,10 +1,9 @@
 import { StyleSheet, Text, TextInput, View } from 'react-native';
-import React, { useState } from 'react';
+import React from 'react';
 import Colors from '../constants/Colors';
 import { moderateScale, verticalScale, scale } from 'react-native-size-matters';
 
-const DescriptionBox = ({ label, placeholder }) => {
-    const [value, setValue] = useState('');
+const DescriptionBox = ({ label, placeholder, value, setValue }) => {
 
     return (
         <View style={styles.container}>

@@ -5,6 +5,8 @@ import ProfileImage from '../../../components/ProfileImage'
 import Colors from '../../../constants/Colors'
 import OwnerDetailsInput from '../../../components/OwnerDetailsInput'
 import { useSelector } from 'react-redux';
+import Images from '../../../constants/Images'
+import Api from '../../../api/common/Api'
 
 const OwnerProfileEdit = () => {
     const { user } = useSelector((state) => state.auth);
@@ -20,7 +22,7 @@ const OwnerProfileEdit = () => {
     return (
         <View style={styles.container}>
             <Header title={"Edit Owner Details"} />
-            <ProfileImage img={user?.image} />
+            <ProfileImage img={`${Api.BASE_URL}/${user?.image}`} />
             <OwnerDetailsInput
                 username={username}
                 setUsername={setUsername}

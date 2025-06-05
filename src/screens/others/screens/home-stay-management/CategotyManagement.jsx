@@ -5,7 +5,7 @@ import InputWithLabel from '../../../../components/InputWithLabel'
 import DropdownWithLabel from '../../../../components/DropdownWithLabel'
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters'
 import Colors from '../../../../constants/Colors'
-import DescriptionBox from '../../../../components/DescriptionBox '
+import DescriptionBox from '../../../../components/DescriptionBox'
 
 const CategotyManagement = () => {
     const item = [
